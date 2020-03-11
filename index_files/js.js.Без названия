@@ -1,0 +1,69 @@
+// JavaScript Document
+$(document).ready(function() {
+$("#voiti").click(
+function(){
+	
+	$('#voiti_form').toggleClass('voiti voiti_nagat');
+ }
+);
+
+$("#x_voiti_form").click(
+function(){
+	$('#voiti_form').toggleClass('voiti voiti_nagat');
+ }
+);
+
+
+$("#zvonok").click(
+function(){
+	$('#zvonok_form').toggleClass('voiti voiti_nagat');
+ }
+);
+
+$("#vostparol").click(
+function() {
+$('#vostparol_form').toggleClass('voiti voiti_nagat');
+}
+);
+
+$("#x_vostparol").click(
+function() {
+$('#vostparol_form').toggleClass('voiti voiti_nagat');
+}
+);
+
+$("#x_zvonok").click(
+function(){
+	$('#zvonok_form').toggleClass('voiti voiti_nagat');
+ }
+);
+});
+// раскрытый товар
+<!-- смена изображения -->
+function smena_izo(adres) {
+var	htm="<a class='gallery' rel='group' href='"+adres+"'><img src='../../"+adres+"' width='300' /></a>";
+$("#img_big").empty();
+$("#img_big").append(htm);
+}
+<!-- раскрытие особенностей товара -->
+function otkr_osob(id_osob) {
+	$('#osob'+id_osob).toggleClass('osob_skrit osob_otkrit');
+	$('#osob_ramka'+id_osob).toggleClass('ramka_osob ramka_osob_nachat');
+ }
+ 
+function vk(v, z){	
+$(".cor_nachat").removeClass("cor_nachat").addClass("cor");
+$("#"+z).removeClass("cor").addClass("cor_nachat");
+
+$(".vkladka_nachat").removeClass("vkladka_nachat").addClass("vkladka");
+$("#"+v).removeClass("vkladka").addClass("vkladka_nachat");
+}
+
+function izm_kol_list(deyst, id_bloka) {
+var kol=$("#col_rt"+id_bloka).val();
+if (deyst=='+') { kol=Number(kol)+Number('1'); }
+if (deyst=='-') { kol=Number(kol)-Number('1');  if (kol<1) { kol='1'; }}
+
+$("#col_rt"+id_bloka).val(kol);
+obn_col_zacaz_mobil(id_bloka);
+}

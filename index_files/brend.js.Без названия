@@ -1,0 +1,42 @@
+// JavaScript Document
+function bykva(bykvaval, cvet) {
+$.ajax({
+type: "POST",
+url: "scr/obrbrend.php",
+data: "bykva="+bykvaval+"&cvetbyk="+cvet,	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#brend").empty();
+    //и выводим ответ php скрипта
+    $("#brend").append(html);
+   }
+ });
+}
+
+
+
+function vse_brend() {
+$.ajax({
+type: "POST",
+url: "scr/obrbrend.php",
+data: "vsebykva=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#brend").empty();
+    //и выводим ответ php скрипта
+    $("#brend").append(html);
+   }
+ });
+}
+
+
+function vse_brend_ybrat() {
+    //предварительно очищаем нужный элемент страницы
+    $("#brend").empty();
+    //и выводим ответ php скрипта
+    $("#brend").append("<div class='vse_novosti_4' onClick=\"vse_brend();\"><span style='color: #FF0000; font-size: 12px;'>►</span> Все бренды</div>");
+   }
+
+

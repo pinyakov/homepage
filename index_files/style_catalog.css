@@ -1,0 +1,282 @@
+@charset "utf-8";
+/* CSS Document */
+
+.meny {
+	list-style: none;
+	padding-left:0px;
+	width:100%;
+	cursor:pointer;
+}
+.meny li {
+	position: relative;
+	padding-left: 25px;
+	font-size: 12px;
+
+	z-index: 2000;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+.meny li a {
+	color: #666666;
+	text-decoration: none;
+	font-size: 13px;
+	font-family: Verdana, sans-serif;
+}
+
+.meny li a:hover {
+	color: #000;
+}
+.meny li:hover {
+	background-color: #EDECE9;
+}
+
+
+
+
+/* второй уровень */
+.meny li ul {
+	list-style: none;
+	display:none;
+	position:absolute;
+	left: 97%;
+	top: 0px;
+	width: 220px;
+	padding-left:0px;
+	-webkit-box-shadow: 4px 4px 18px rgba(50, 50, 50, 0.75); 
+	-moz-box-shadow:4px 4px 18px rgba(50, 50, 50, 0.75); 
+	box-shadow: 4px 4px 18px rgba(50, 50, 50, 0.75);
+	z-index:2100;
+}
+
+.meny li:hover ul {
+	display: block;
+}
+.meny li ul li {
+	position:relative;
+	background-color: #F7F7F7;
+	border: 1px solid #CCC;
+	z-index:2000;
+}
+
+.meny li ul li a {
+	color: #666;
+	text-decoration: none;
+	font-size:12px;
+	font-family: Arial, Helvetica, sans-serif;	
+}
+.meny li ul li a:hover {
+	color: #000;
+}
+/* третий уровень */
+.meny li ul li ul li {
+	display:none;
+	
+
+}
+.meny li ul li ul {
+	list-style: none;
+	padding-left:0px;
+	position: absolute;
+	left:218px;
+	z-index:2000;
+}
+
+.meny li ul li:hover ul li {
+	display: block;
+	
+}
+.left_text {
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.15);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.15);
+	box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.15);
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+.left_text img {
+	width:100%;
+}
+.divobertk {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	margin: 2px;
+	cursor: pointer;
+}
+.divobertk_hover {
+	margin: 2px;
+	cursor: pointer;
+}
+.divrazd {
+	color: #594D42;
+	font-size: 14px;
+	font-family: Arial;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 10px;
+	padding-top: 10px;
+	background-image: -webkit-gradient(linear, 50.00% 100.00%, 50.00% 0.00%, color-stop( 0% , rgba(233,227,208,1.00)),color-stop( 100% , rgba(205,196,165,1.00)));
+	background-image: -webkit-linear-gradient(90deg,rgba(233,227,208,1.00) 0%,rgba(205,196,165,1.00) 100%);
+	background-image: -moz-linear-gradient(top, #f0ecde, #cdc4a5);
+	background-image: -ms-linear-gradient(top, #f0ecde, #cdc4a5);
+	background-image: -o-linear-gradient(top, #f0ecde, #cdc4a5);
+	background-image: linear-gradient(0deg,rgba(233,227,208,1.00) 0%,rgba(205,196,165,1.00) 100%);
+	border-radius: 3px;
+	margin-left: 5px;
+}
+.divrazd:hover {
+	background-image: -webkit-gradient(linear, 50.00% 100.00%, 50.00% 0.00%, color-stop( 0% , rgba(205,196,165,1.00)),color-stop( 100% , rgba(205,196,165,1.00)));
+	background-image: -webkit-linear-gradient(90deg,rgba(205,196,165,1.00) 0%,rgba(205,196,165,1.00) 100%);
+	background-image: -moz-linear-gradient(top, #f0ecde, #cdc4a5);
+	background-image: -ms-linear-gradient(top, #f0ecde, #cdc4a5);
+	background-image: -o-linear-gradient(top, #f0ecde, #cdc4a5);
+	background-image: linear-gradient(0deg,rgba(205,196,165,1.00) 0%,rgba(205,196,165,1.00) 100%);
+	color: #333333;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 10px;
+	padding-top: 10px;
+}
+.divrazd_hover {
+	color: #333333;
+	font-size: 14px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 10px;
+	padding-top: 10px;
+	margin-left: 5px;
+	border-radius: 3px;
+	background-color: #cdc4a5;
+}
+
+.porazdel {
+	background-image:url(../img/plus.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+.leftnovink {
+	color: #FFF;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	background: rgb(200, 72, 9);
+	background: -moz-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	background: -webkit-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	background: -o-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-top: 4px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.leftnovink a {
+	color: #FFF;
+	font-size: 15px;
+	text-align: center;
+	text-decoration: none;
+}
+.leftnovink a:hover {
+	
+}
+
+.leftsale {
+	color: #FFF;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-top: 1px;
+	padding-left: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-right: 5px;
+	background: rgb(200, 72, 9);
+	background: -moz-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	background: -webkit-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	background: -o-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+}
+.leftsale a {
+	color: #FFF;
+	font-size: 15px;
+	text-align: left;
+	text-decoration: none;
+}
+.leftsale a:hover {
+	
+}
+.leftakcia {
+	color: #FFF;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	margin-left: 4px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	background: rgb(200, 72, 9);
+	background: -moz-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	background: -webkit-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	background: -o-linear-gradient(0deg, rgb(200, 72, 9) 0%, rgb(247, 132, 9) 100%);
+	margin-top: 1px;
+}
+.leftakcia a {
+	color: #FFF;
+	font-size: 15px;
+	text-align: left;
+	text-decoration: none;
+}
+.leftakcia a:hover {
+
+}
+.katalog_pl {
+	padding-bottom: 8px;
+	padding-top: 8px;
+	background-color: #FFFFFF;	
+}
+.cat_verx {
+	padding-bottom: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 40px;
+	
+}
+.leftnovink:hover {
+	background: rgb(255, 150, 0);
+}
+
+.leftsale:hover {
+	background: rgb(255, 150, 0);
+}
+
+.leftakcia:hover {
+	background: rgb(255, 150, 0);
+	
+}
+
+.bykva {
+	font-weight: bold;
+	float: left;
+	font-size: 18px;
+	cursor: pointer;
+	width: 22px;
+	height: 25px;
+	margin-left: 4px;
+	margin-right: 5px;
+}
+.bykva:hover {
+	font-size: 20px; 
+}

@@ -1,0 +1,398 @@
+// JavaScript Document
+// открытие корзины
+function vclcor(x, y){
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "vs_korz=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#vch001").empty();
+    //и выводим ответ php скрипта
+    $("#vch001").append(html);
+   }
+ });
+$(".vcladka_soder").not("display", "block").css("display", "none");
+$('#'+x).slideToggle(200);
+$('.vkladka_chapca_nachat').removeClass('vkladka_chapca_nachat');
+$('#'+y).addClass('vkladka_chapca_nachat');
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function dobavit_tovar(id_tovar, col_tovar) {
+var col_tovar_pole=$("#col_rt"+id_tovar).val();
+if (col_tovar_pole>0) {col_tovar=col_tovar_pole; }
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovar="+id_tovar+"&coltovar="+col_tovar,	
+// Выводим то что вернул PHP
+success: function(html) {
+    obn_col_verx();
+	alert ("Товар добавлен в корзину");
+   }
+ });
+}
+
+function dobavit_tovar1c(id_tovar, col_tovar) {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovar="+id_tovar+"&coltovar="+col_tovar+"&bistr=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    obn_col_verx();
+	alert ("Товар добавлен в корзину"); 
+	
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// обновления количества товара сверху ------------------------------------------------------------------------------------
+function obn_col_verx() {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "obn_col_verx=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    document.getElementById("cor").innerHTML = html; // Выводим ответ сервера
+   }
+ });
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// обновление общей суммы заказа ------------------------------------------------------------------------------------
+function obn_summa_all() {	
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "obnsummaall=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+	//предварительно очищаем нужный элемент страницы
+    $(".summa_all").empty();
+    //и выводим ответ php скрипта
+    $(".summa_all").append(html);
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// изменение количество позиции заказа ------------------------------------------------------------------------------------
+function obn_col_zacaz(id_tovar) {
+var new_col=document.getElementById("col_tovar_f"+id_tovar).value;
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovar="+id_tovar+"&newcol="+new_col,	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#cor").empty();
+    //и выводим ответ php скрипта
+    $("#cor").append(html);
+obn_col_verx(); // обновляем количество сверху
+// obn_cena(id_tovar); // обновляем сумму позиции
+// obn_summa_all(); // обновленеие суммы всего товара в корзине
+// obn_col_all(); // обновленеие количества всего товара в корзине
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// изменение суммы товара --------------------------------------------------------------------------------------------------
+function obn_cena(id_tova) {	
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovarcena="+id_tova,	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#cena"+id_tova).empty();
+    //и выводим ответ php скрипта
+    $("#cena"+id_tova).append(html);
+
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- удаление товара из корзины --------------------------------------------------------------------------------------------------------------->
+function ydalit_tovarc(id_tovar, naz_tovar) {
+if (confirm ('Удалить товар '+naz_tovar+' из заказа?')) {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovarydal="+id_tovar,
+success: function() {
+obn_col_verx(); // обновляем количество сверху
+// ydal_obnv(); // обновление списка товара
+location.reload(); // перезагружаем страницу
+}
+});
+}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- функция обновления списка товара при удалении позиции ------------------------------------------------------------------------------------->
+function ydal_obnv() {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "vs_korz=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#vch001").empty();
+    //и выводим ответ php скрипта
+    $("#vch001").append(html);
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- функция вывода полей для емайла и телефона ------------------------------------------------------------------------------------->
+function kont() {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "kont=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#kont").empty();
+    //и выводим ответ php скрипта
+    $("#kont").append(html);
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+<!-- изменение общего количества товара снизу ----------------------------------------------------------------------------------------------------------->
+function obn_col_all() {	
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "obncolall=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+	//предварительно очищаем нужный элемент страницы
+    $(".col_all").empty();
+    //и выводим ответ php скрипта
+    $(".col_all").append(html);
+   }
+ });
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// отправка заказа -----------------------------------------------------------------------------------------------------------
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// очистка корзины -----------------------------------------------------------------------------------------------------------
+function ochist() {	
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "ochist=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+	ydal_obnv();
+	obn_col_verx(); // обновляем количество сверху
+	location.reload(); // перезагружаем страницу
+   }
+ });
+}
+
+<!-- функция отправки заказа -->
+function otprzacaz_nz() {
+if (document.getElementById("tel").value) {var tel_p=document.getElementById("tel").value;
+if (document.getElementById("email_p").value) { var email_p=document.getElementById("email_p").value;
+var coment=document.getElementById("coment").value;
+var vivos=$("input[name='vivos']:checked").val();
+var fio_p=document.getElementById("fio").value;
+
+var adres_adres=$("#adres").val();
+var adres_gorod=$("#gorod").val();
+var adres_yl=$("#yl").val();
+var adres_dom=$("#dom").val();
+var adres_corp=$("#corp").val();
+var adres_stroen=$("#stroen").val();
+var adres_kv=$("#kv").val();
+var adres_podiezd=$("#podiezd").val();
+var adres_etag=$("#etag").val();
+var adres_coddom=$("#coddom").val();
+
+stroka="&adres_adres="+adres_adres+"&adres_gorod="+adres_gorod+"&adres_yl="+adres_yl+"&adres_dom="+adres_dom+"&adres_corp="+adres_corp+"&adres_stroen="+adres_stroen+"&adres_kv="+adres_kv+"&adres_podiezd="+adres_podiezd+"&adres_etag="+adres_etag+"&adres_coddom="+adres_coddom;
+
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "otprzacaz=1&tel="+tel_p+"&email="+email_p+"&coment="+coment+"&vivos="+vivos+stroka+"&fio="+fio_p,	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#vch001").empty();
+    //и выводим ответ php скрипта
+    $("#vch001").append(html);
+	obn_col_verx(); // обновляем количество сверху
+   }
+ });
+	} else {alert ("Пожалуйста укажите E-mail"); } 
+	
+	} else {
+	alert ("Пожалуйста укажите телефон");	
+	}
+}
+
+<!-- функция отправки заказа -->
+function otprzacaz_z() {
+	// формируем строку для отправки
+	if (document.getElementById("fio").value) {var fio_p=document.getElementById("fio").value;
+	var stroka="otprzacaz=1&fio="+fio_p;
+	}
+	if (document.getElementById("gorod").value) {
+	var adres_adres=$("#adres").val();
+	var adres_gorod=$("#gorod").val();
+	var adres_yl=$("#yl").val();
+	var adres_dom=$("#dom").val();
+	var adres_corp=$("#corp").val();
+	var adres_stroen=$("#stroen").val();
+	var adres_kv=$("#kv").val();
+	var adres_podiezd=$("#podiezd").val();
+	var adres_etag=$("#etag").val();
+	var adres_coddom=$("#coddom").val();
+	var vivos=$("input[name=vivos]:checked").val();
+	
+stroka=stroka+"&adres_adres="+adres_adres+"&adres_gorod="+adres_gorod+"&adres_yl="+adres_yl+"&adres_dom="+adres_dom+"&adres_corp="+adres_corp+"&adres_stroen="+adres_stroen+"&adres_kv="+adres_kv+"&adres_podiezd="+adres_podiezd+"&adres_etag="+adres_etag+"&adres_coddom="+adres_coddom;
+	}
+	if (document.getElementById("coment").value) {var coment_p=$("#coment").val();
+	stroka=stroka+"&coment="+coment_p;
+	}
+	
+	if (document.getElementById("tel").value) {var tel_p=$("#tel").val();
+	if (document.getElementById("email_p").value) { var email_p=$("#email_p").val();
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: stroka+"&tel="+tel_p+"&email="+email_p+"&vivos="+vivos,	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#vch001").empty();
+    //и выводим ответ php скрипта
+    $("#vch001").append(html);
+	obn_col_verx(); // обновляем количество сверху
+   }
+ });
+	} else {alert ("Пожалуйста укажите E-mail"); } 
+	
+	} else {
+	alert ("Пожалуйста укажите телефон");	
+	}
+}
+
+<!-- функция обновления адреса -->
+function obn_adres() {
+	
+	if (document.getElementById("adres").value) { var adresp=$("#adres option:selected").text(); 
+	document.getElementById("uzeradres").value=adresp;
+	}
+
+}
+
+
+function zam_adres(id_adres, pol) {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "id_adres="+id_adres+"&pol="+pol,
+// Выводим то что вернул PHP
+success: function(html) {
+// Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+$("#adres").empty();
+// Выводим ответ сервера
+$("#adres").append(html);
+   }
+ });
+	
+}
+
+function otcr_adr() {
+$('#adres_breg').slideToggle(200);	
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////-------Мобильный--------------///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function obn_col_verx_mobil() {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "obn_col_verx_mobil=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    document.getElementById("cor").innerHTML = html; // Выводим ответ сервера
+   }
+ });
+}
+
+
+
+function dobavit_tovar_mobil(id_tovar, col_tovar) {
+var col_tovar_pole=$("#col_rt").val();
+if (col_tovar_pole>0) {col_tovar=col_tovar_pole; }
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovar="+id_tovar+"&coltovar="+col_tovar,	
+// Выводим то что вернул PHP
+success: function(html) {
+    obn_col_verx_mobil();
+	alert ("Товар добавлен в корзину");
+   }
+ });
+}
+
+function dobavit_tovar1c_mobil(id_tovar, col_tovar) {
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovar="+id_tovar+"&coltovar="+col_tovar+"&bistr=1",	
+// Выводим то что вернул PHP
+success: function(html) {
+    obn_col_verx_mobil();
+	alert ("Товар добавлен в корзину"); 
+	
+   }
+ });
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// изменение количество позиции заказа ------------------------------------------------------------------------------------
+function obn_col_zacaz_mobil(id_tovar) {
+var new_col=document.getElementById("col_tovar_f"+id_tovar).value;
+$.ajax({
+type: "POST",
+url: "scr/obrcor.php",
+data: "idtovar="+id_tovar+"&newcol="+new_col,	
+// Выводим то что вернул PHP
+success: function(html) {
+    //предварительно очищаем нужный элемент страницы
+    $("#cor").empty();
+    //и выводим ответ php скрипта
+    $("#cor").append(html);
+obn_col_verx_mobil(); // обновляем количество сверху
+// obn_cena(id_tovar); // обновляем сумму позиции
+// obn_summa_all(); // обновленеие суммы всего товара в корзине
+// obn_col_all(); // обновленеие количества всего товара в корзине
+   }
+ });
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
